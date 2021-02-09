@@ -1,5 +1,9 @@
 import lombok.*;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.util.List;
+
 @Getter
 @Setter
 @ToString
@@ -7,8 +11,9 @@ import lombok.*;
 @AllArgsConstructor
 public class MerkleTree implements MerkleTreeInterface {
 
-    MerkleTree[] nodes;
-    String hash;
+    private MerkleNode root;
+    private List<MerkleNode> children;
+    private byte[] hash;
 
     static MerkleTree createMerkleTree(String[] data) {
         return null;
@@ -28,5 +33,7 @@ public class MerkleTree implements MerkleTreeInterface {
     public String level(int index) {
         return null;
     }
+
+
 
 }
