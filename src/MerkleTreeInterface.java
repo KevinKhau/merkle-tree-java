@@ -1,6 +1,6 @@
 public interface MerkleTreeInterface {
     // Returns the Merkle root of the tree
-    MerkleTree root();
+    MerkleNode root();
 
     /**
      * Merkel root level is 0, while in the given example it is 2.
@@ -10,5 +10,5 @@ public interface MerkleTreeInterface {
     int height();
 
     // Returns an Array containing the hashes of the given level
-    String level(int index);
+    byte[][] level(int index);
 }

@@ -1,7 +1,5 @@
 import lombok.*;
 
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
 import java.util.List;
 
 @Getter
@@ -13,15 +11,14 @@ public class MerkleTree implements MerkleTreeInterface {
 
     private MerkleNode root;
     private List<MerkleNode> children;
-    private byte[] hash;
 
     static MerkleTree createMerkleTree(String[] data) {
         return null;
     }
 
     @Override
-    public MerkleTree root() {
-        return null;
+    public MerkleNode root() {
+        return root;
     }
 
     @Override
@@ -30,7 +27,7 @@ public class MerkleTree implements MerkleTreeInterface {
     }
 
     @Override
-    public String level(int index) {
+    public byte[][] level(int index) {
         return null;
     }
 
