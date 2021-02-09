@@ -7,9 +7,8 @@ class MerkleTreeTest {
     @Test
     void givenArray_whenCreateMerkleTree_thenMerkleTree() {
         String[] data = new String[]{"Sorare", "Kevin", "Blockchain", "Football"};
-        MerkleTree merkleTree = new MerkleTree(data);
+        MerkleTree merkleTree = MerkleTree.createMerkleTree(data);
         assertNotNull(merkleTree);
-
     }
 
     @Test

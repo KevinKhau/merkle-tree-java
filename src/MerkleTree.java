@@ -1,14 +1,17 @@
+import lombok.*;
+
+@Getter
+@Setter
+@ToString
+@EqualsAndHashCode
+@AllArgsConstructor
 public class MerkleTree implements MerkleTreeInterface {
 
     MerkleTree[] nodes;
     String hash;
 
-    /**
-     * Create Merkle tree
-     * @param data Array of data
-     */
-    MerkleTree(String[] data) {
-
+    static MerkleTree createMerkleTree(String[] data) {
+        return null;
     }
 
     @Override
@@ -26,7 +29,4 @@ public class MerkleTree implements MerkleTreeInterface {
         return null;
     }
 
-    public void getHash() {
-
-    }
 }
