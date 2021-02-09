@@ -1,5 +1,8 @@
 public class MerkleTree implements MerkleTreeInterface {
 
+    MerkleTree[] nodes;
+    String hash;
+
     /**
      * Create Merkle tree
      * @param data Array of data
@@ -21,5 +24,9 @@ public class MerkleTree implements MerkleTreeInterface {
     @Override
     public String level(int index) {
         return null;
+    }
+
+    public void getHash() {
+
     }
 }
