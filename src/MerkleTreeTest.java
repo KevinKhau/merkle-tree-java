@@ -1,6 +1,8 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -33,8 +35,8 @@ class MerkleTreeTest {
     @Test
     void givenData_whenCreateMerkleTree_then() {
         assertEquals(merkleTree.getLeaves().size(), 4);
-        assertEquals(merkleTree.getLeaves(), new MerkleNode[]{node00, node01, node10, node11});
-        assertEquals(merkleTree.getNodes(), 7);
+        assertEquals(merkleTree.getLeaves(), Arrays.asList(node00, node01, node10, node11));
+        assertEquals(merkleTree.getNodes().size(), 7);
         assertEquals(merkleTree.getRoot(), root);
     }
 

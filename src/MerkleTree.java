@@ -10,7 +10,8 @@ import java.util.List;
 public class MerkleTree implements MerkleTreeInterface {
 
     private MerkleNode root;
-    private List<MerkleNode> children;
+    private List<MerkleNode> nodes;
+    private List<MerkleNode> leaves;
 
     static MerkleTree createMerkleTree(String[] data) {
         return null;
