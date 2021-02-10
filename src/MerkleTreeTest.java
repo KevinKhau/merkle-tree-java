@@ -3,8 +3,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 class MerkleTreeTest {
@@ -41,10 +40,9 @@ class MerkleTreeTest {
     }
 
     @Test
-    void givenRoot_whenGetHash_thenEqual() {
+    void givenData_whenCreateMerkleTree_thenEqualsRoot() {
         assertNotNull(merkleTree);
-        assertEquals(merkleTree.hashCode(), root.hashCode());
-        assertEquals(merkleTree.hashCode(), root.hashCode());
+        assertEquals(merkleTree.getRoot(), root);
         assertEquals(merkleTree.getRoot().getHash(), root.getHash());
     }
 
