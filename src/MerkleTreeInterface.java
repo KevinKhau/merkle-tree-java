@@ -9,7 +9,7 @@ public interface MerkleTreeInterface {
     MerkleNode root();
 
     /**
-     * Merkel root level is 0, while in the given example it is 2.
+     * Merkel root level is 0, thus in the given example height is 2.
      *
      * @return number of levels of the tree
      */

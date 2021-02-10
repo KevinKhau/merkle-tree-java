@@ -5,7 +5,6 @@ import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-
 class MerkleTreeTest {
 
     private String[] data;
@@ -68,7 +67,13 @@ class MerkleTreeTest {
     void level() {
         assertEquals(merkleTree.level(0), new byte[][]{root.getHash()});
         assertEquals(merkleTree.level(1), new byte[][]{node0.getHash(), node1.getHash()});
-        assertEquals(merkleTree.level(1), new byte[][]{root.getLeft().getHash(), root.getRight().getHash()});
         assertEquals(merkleTree.level(2), new byte[][]{node00.getHash(), node01.getHash(), node10.getHash(), node11.getHash()});
+    }
+
+    @Test
+    void log() {
+        for (int i = 0; i < 100; i++) {
+            System.out.println(i + " " + Math.log(i)/Math.log(2));
+        }
     }
 }

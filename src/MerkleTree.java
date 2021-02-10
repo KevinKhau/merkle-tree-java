@@ -47,14 +47,13 @@ public class MerkleTree implements MerkleTreeInterface {
 
     @Override
     public int height() {
-        return 0;
+        // Constant implementation using binary tree properties
+        return (int) Math.ceil(Math.log(this.leaves.size())/Math.log(2));
     }
 
     @Override
     public byte[][] level(int index) {
         return null;
     }
-
-
 
 }
