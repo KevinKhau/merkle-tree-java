@@ -1,4 +1,10 @@
+/**
+ * Interface with specified methods.
+ */
 public interface MerkleTreeInterface {
+
+    MerkleTree createMerkleTree(String[] data);
+
     // Returns the Merkle root of the tree
     MerkleNode root();
 
