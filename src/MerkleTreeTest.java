@@ -30,7 +30,29 @@ class MerkleTreeTest {
     }
 
     @Test
+    void givenNull_whenCreateMerkleTree_thenException() {
+        try {
+            MerkleTree emptyTree = new MerkleTree(null);
+            fail("Thrown exception expected");
+        } catch (IllegalArgumentException iae) {
+            assertEquals("Input data must have one or more items.", iae.getMessage());
+        }
+    }
+
+    @Test
+    void givenEmpty_whenCreateMerkleTree_thenException() {
+        String[] empty = new String[0];
+        try {
+            MerkleTree emptyTree = new MerkleTree(empty);
+            fail("Thrown exception expected");
+        } catch (IllegalArgumentException iae) {
+            assertEquals("Input data must have one or more items.", iae.getMessage());
+        }
+    }
+
+    @Test
     void givenData_whenCreateMerkleTree_then() {
+        assertNotNull(merkleTree);
         assertEquals(4, merkleTree.getLeaves().size());
         assertEquals(Arrays.asList(node00, node01, node10, node11), merkleTree.getLeaves());
         assertEquals(7, merkleTree.getNodes().size());

@@ -21,6 +21,9 @@ public class MerkleTree implements MerkleTreeInterface {
     }
 
     public MerkleTree createMerkleTree(String[] data) {
+        if (data == null || data.length == 0) {
+            throw new IllegalArgumentException("Input data must have one or more items.");
+        }
         this.leaves = Arrays.stream(data).map(MerkleNode::new).collect(Collectors.toList());
         this.nodes = new ArrayList<>();
         buildMerkleTree(this.leaves);
