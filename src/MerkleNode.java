@@ -2,6 +2,7 @@ import lombok.*;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
+import java.util.Arrays;
 import java.util.List;
 
 @Getter
@@ -17,14 +18,17 @@ public class MerkleNode {
     public MerkleNode(MerkleNode left, MerkleNode right) {
         this.left = left;
         this.right = right;
-    }
-    public MerkleNode(byte[] hash) {
-        this.hash = hash;
+        this.hash = hash(concatHashes(left.hash, right.hash));
     }
     public MerkleNode(String data) {
         this.hash = hash(data);
     }
 
+    private String concatHashes(byte[] h1, byte[] h2) {
+        byte[] concatenation = Arrays.copyOf(h1, h1.length + h2.length);
+        System.arraycopy(h2, 0, concatenation, h1.length, h2.length);
+        return new String(concatenation, StandardCharsets.UTF_8);
+    }
     /**
      * Used to compute MerkleTree#level without adding a `level` property
      * to MerkleNode.

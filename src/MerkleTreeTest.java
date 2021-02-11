@@ -69,7 +69,7 @@ class MerkleTreeTest {
         assertEquals(root.hashCode(), merkleTree.root().hashCode());
 
         // Same root hash
-        assertEquals(root.getHash(), merkleTree.root().getHash());
+        assertArrayEquals(root.getHash(), merkleTree.root().getHash());
     }
 
     @Test
