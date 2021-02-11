@@ -32,17 +32,17 @@ class MerkleTreeTest {
 
     @Test
     void givenData_whenCreateMerkleTree_then() {
-        assertEquals(merkleTree.getLeaves().size(), 4);
-        assertEquals(merkleTree.getLeaves(), Arrays.asList(node00, node01, node10, node11));
-        assertEquals(merkleTree.getNodes().size(), 7);
-        assertEquals(merkleTree.getRoot(), root);
+        assertEquals(4, merkleTree.getLeaves().size());
+        assertEquals(Arrays.asList(node00, node01, node10, node11), merkleTree.getLeaves());
+        assertEquals(7, merkleTree.getNodes().size());
+        assertEquals(root, merkleTree.getRoot());
     }
 
     @Test
     void givenData_whenCreateMerkleTree_thenEqualsRoot() {
         assertNotNull(merkleTree);
-        assertEquals(merkleTree.getRoot(), root);
-        assertEquals(merkleTree.getRoot().getHash(), root.getHash());
+        assertEquals(root, merkleTree.getRoot());
+        assertEquals(root.getHash(), merkleTree.getRoot().getHash());
     }
 
     @Test
@@ -51,11 +51,11 @@ class MerkleTreeTest {
         assertNotNull(merkleTree);
 
         // Same root
-        assertEquals(merkleTree.root(), root);
-        assertEquals(merkleTree.root().hashCode(), root.hashCode());
+        assertEquals(root, merkleTree.root());
+        assertEquals(root.hashCode(), merkleTree.root().hashCode());
 
         // Same root hash
-        assertEquals(merkleTree.root().getHash(), root.getHash());
+        assertEquals(root.getHash(), merkleTree.root().getHash());
     }
 
     @Test
@@ -65,9 +65,9 @@ class MerkleTreeTest {
 
     @Test
     void level() {
-        assertEquals(merkleTree.level(0), new byte[][]{root.getHash()});
-        assertEquals(merkleTree.level(1), new byte[][]{node0.getHash(), node1.getHash()});
-        assertEquals(merkleTree.level(2), new byte[][]{node00.getHash(), node01.getHash(), node10.getHash(), node11.getHash()});
+        assertEquals(new byte[][]{node00.getHash(), node01.getHash(), node10.getHash(), node11.getHash()}, merkleTree.level(2));
+        assertEquals(new byte[][]{node0.getHash(), node1.getHash()}, merkleTree.level(1));
+        assertEquals(new byte[][]{root.getHash()}, merkleTree.level(0));
     }
 
     @Test
