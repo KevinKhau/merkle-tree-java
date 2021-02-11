@@ -25,6 +25,21 @@ public class MerkleNode {
         this.hash = hash(data);
     }
 
+    /**
+     * Used to compute MerkleTree#level without adding a `level` property
+     * to MerkleNode.
+     * @return height from this node to the leaf.
+     */
+    public int heightToLeaf() {
+        MerkleNode node = this;
+        int distance = 0;
+        while (node.left != null) {
+            node = node.left;
+            distance++;
+        }
+        return distance;
+    }
+
     @SneakyThrows
     public static byte[] hash(String data) {
         MessageDigest digest = MessageDigest.getInstance("SHA-256");

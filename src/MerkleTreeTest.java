@@ -7,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MerkleTreeTest {
 
-    private String[] data;
     private MerkleTree merkleTree;
     MerkleNode node00;
     MerkleNode node01;
@@ -19,7 +18,7 @@ class MerkleTreeTest {
 
     @BeforeEach
     void beforeEach() {
-        data = new String[]{"Sorare", "Kevin", "Blockchain", "Football"};
+        String[] data = new String[]{"Sorare", "Kevin", "Blockchain", "Football"};
         merkleTree = new MerkleTree(data);
         node00 = new MerkleNode("Sorare");
         node01 = new MerkleNode("Kevin");
@@ -36,13 +35,6 @@ class MerkleTreeTest {
         assertEquals(Arrays.asList(node00, node01, node10, node11), merkleTree.getLeaves());
         assertEquals(7, merkleTree.getNodes().size());
         assertEquals(root, merkleTree.getRoot());
-    }
-
-    @Test
-    void givenData_whenCreateMerkleTree_thenEqualsRoot() {
-        assertNotNull(merkleTree);
-        assertEquals(root, merkleTree.getRoot());
-        assertEquals(root.getHash(), merkleTree.getRoot().getHash());
     }
 
     @Test
@@ -65,9 +57,9 @@ class MerkleTreeTest {
 
     @Test
     void level() {
-        assertEquals(new byte[][]{node00.getHash(), node01.getHash(), node10.getHash(), node11.getHash()}, merkleTree.level(2));
-        assertEquals(new byte[][]{node0.getHash(), node1.getHash()}, merkleTree.level(1));
-        assertEquals(new byte[][]{root.getHash()}, merkleTree.level(0));
+        assertArrayEquals(new byte[][]{node00.getHash(), node01.getHash(), node10.getHash(), node11.getHash()}, merkleTree.level(2));
+        assertArrayEquals(new byte[][]{node0.getHash(), node1.getHash()}, merkleTree.level(1));
+        assertArrayEquals(new byte[][]{root.getHash()}, merkleTree.level(0));
     }
 
     @Test

@@ -53,7 +53,8 @@ public class MerkleTree implements MerkleTreeInterface {
 
     @Override
     public byte[][] level(int index) {
-        return null;
+        int height = height();
+        return this.nodes.stream().filter(n -> height - n.heightToLeaf() == index).map(MerkleNode::getHash).toArray(byte[][]::new);
     }
 
 }
