@@ -31,14 +31,21 @@ public class MerkleTree implements MerkleTreeInterface {
     }
 
     private void buildMerkleTree(List<MerkleNode> nodes) {
-        this.nodes.addAll(nodes);
         if (nodes.size() == 1) {
+            this.nodes.add(nodes.get(0));
             this.setRoot(nodes.get(0));
             return;
         }
         List<MerkleNode> parents = new ArrayList<>();
         for (int i = 0; i < nodes.size(); i += 2) {
-            parents.add(new MerkleNode(nodes.get(i), (i + 1 < nodes.size()) ? nodes.get(i + 1) : null));
+            if (i + 1 < nodes.size()) {
+                this.nodes.add(nodes.get(i));
+                this.nodes.add(nodes.get(i + 1));
+                parents.add(new MerkleNode(nodes.get(i), nodes.get(i + 1))); // new node
+            } else {
+                parents.add(nodes.get(i)); // last node elevated to higher level
+            }
+
         }
         buildMerkleTree(parents);
     }

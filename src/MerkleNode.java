@@ -3,7 +3,6 @@ import lombok.*;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.util.Arrays;
-import java.util.List;
 
 @Getter
 @Setter
@@ -11,9 +10,9 @@ import java.util.List;
 @EqualsAndHashCode
 public class MerkleNode {
 
+    private byte[] hash;
     private MerkleNode left;
     private MerkleNode right;
-    private byte[] hash;
 
     public MerkleNode(MerkleNode left, MerkleNode right) {
         this.left = left;
