@@ -62,9 +62,12 @@ public class MerkleTree implements MerkleTreeInterface {
     }
 
     @Override
-    public byte[][] level(int index) {
+    public String[] level(int index) {
         int height = height();
-        return this.nodes.stream().filter(n -> height - n.heightToLeaf() == index).map(MerkleNode::getHash).toArray(byte[][]::new);
+        if (index > height) {
+            throw new IllegalArgumentException("Input index incorrect. Expected: less or equal to " + height + ".");
+        }
+        return this.nodes.stream().filter(n -> index == n.heightToRoot()).map(MerkleNode::getHash).toArray(String[]::new);
     }
 
 }

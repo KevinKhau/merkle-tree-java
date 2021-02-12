@@ -16,5 +16,5 @@ public interface MerkleTreeInterface {
     int height();
 
     // Returns an Array containing the hashes of the given level
-    byte[][] level(int index);
+    String[] level(int index);
 }

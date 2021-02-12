@@ -2,7 +2,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -82,9 +81,8 @@ class MerkleTreeTest {
         assertEquals(root.hashCode(), fourLeafTree.root().hashCode());
 
         // Same root hash
-        assertArrayEquals(root.getHash(), fourLeafTree.root().getHash());
+        assertEquals(root.getHash(), fourLeafTree.root().getHash());
     }
-
 
     /* Number of expected nodes : leaves * 2 - 1 */
     @Test
@@ -138,10 +136,41 @@ class MerkleTreeTest {
     }
 
     @Test
-    void givenFourLeaf_whenCompareHash_thenEqual() {
-        assertArrayEquals(new byte[][]{node00.getHash(), node01.getHash(), node10.getHash(), node11.getHash()}, fourLeafTree.level(2));
-        assertArrayEquals(new byte[][]{node0.getHash(), node1.getHash()}, fourLeafTree.level(1));
-        assertArrayEquals(new byte[][]{root.getHash()}, fourLeafTree.level(0));
+    void givenOneLeaf_whenLevel_thenSameHash() {
+        assertArrayEquals(new String[]{MerkleNode.hash("https://kevinkhau.github.io/polygons/index.html")}, oneLeafTree.level(0));
+    }
+
+    @Test
+    void givenThreeLeaf_whenLevel1_thenSameHash() {
+        String hashModelView = MerkleNode.hash(MerkleNode.concatHashes(MerkleNode.hash("Model"), MerkleNode.hash("View")));
+        assertArrayEquals(new String[]{hashModelView, MerkleNode.hash("Controller")}, threeLeafTree.level(1));
+    }
+
+    @Test
+    void givenOneLeaf_whenLevel1_thenException() {
+        try {
+            oneLeafTree.level(1);
+            fail("Thrown exception expected");
+        } catch (IllegalArgumentException iae) {
+            assertEquals("Input index incorrect. Expected: less or equal to 0.", iae.getMessage());
+        }
+    }
+
+    @Test
+    void givenThreeLeaf_whenLevel3_thenException() {
+        try {
+            threeLeafTree.level(3);
+            fail("Thrown exception expected");
+        } catch (IllegalArgumentException iae) {
+            assertEquals("Input index incorrect. Expected: less or equal to 2.", iae.getMessage());
+        }
+    }
+
+    @Test
+    void givenFourLeaf_whenLevelX_thenSameHash() {
+        assertArrayEquals(new String[]{node00.getHash(), node01.getHash(), node10.getHash(), node11.getHash()}, fourLeafTree.level(2));
+        assertArrayEquals(new String[]{node0.getHash(), node1.getHash()}, fourLeafTree.level(1));
+        assertArrayEquals(new String[]{root.getHash()}, fourLeafTree.level(0));
     }
 
     @Test
